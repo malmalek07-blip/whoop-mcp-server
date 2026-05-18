@@ -360,6 +360,10 @@ async function main(): Promise<void> {
 			}
 		});
 
+		app.get('/authorize', (_req: Request, res: Response) => {
+			res.redirect(client.getAuthorizationUrl(['read:profile', 'read:body_measurement', 'read:cycles', 'read:recovery', 'read:sleep', 'read:workout', 'offline']));
+		});
+
 		app.get('/health', (_req: Request, res: Response) => {
 			res.json({ status: 'ok', authenticated: Boolean(db.getTokens()) });
 		});
