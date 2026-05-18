@@ -398,6 +398,10 @@ async function main(): Promise<void> {
 				return;
 			}
 
+			if (req.method === 'GET') {
+				res.status(200).json({ status: 'ok', transport: 'streamable-http' });
+				return;
+			}
 			res.status(405).send('Method not allowed');
 		});
 
